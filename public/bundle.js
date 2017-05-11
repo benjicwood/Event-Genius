@@ -22710,6 +22710,10 @@ var _react = __webpack_require__(81);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _Event = __webpack_require__(269);
+
+var _Event2 = _interopRequireDefault(_Event);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function (_Component) {
@@ -22730,7 +22734,8 @@ var App = function (_Component) {
           'h1',
           null,
           'benjicwood / Event Genius'
-        )
+        ),
+        _react2.default.createElement(_Event2.default, null)
       );
     }
   }]);
@@ -23634,6 +23639,109 @@ for(var collections = ['NodeList', 'DOMTokenList', 'MediaList', 'StyleSheetList'
   if(proto && !proto[TO_STRING_TAG])hide(proto, TO_STRING_TAG, NAME);
   Iterators[NAME] = Iterators.Array;
 }
+
+/***/ },
+/* 269 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _getPrototypeOf = __webpack_require__(226);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(230);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(231);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(233);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(232);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(81);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Movie = function (_Component) {
+  (0, _inherits3.default)(Movie, _Component);
+
+  function Movie() {
+    (0, _classCallCheck3.default)(this, Movie);
+    return (0, _possibleConstructorReturn3.default)(this, (Movie.__proto__ || (0, _getPrototypeOf2.default)(Movie)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(Movie, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'box' },
+        _react2.default.createElement(
+          'article',
+          { className: 'media' },
+          _react2.default.createElement(
+            'div',
+            { className: 'media-left' },
+            _react2.default.createElement(
+              'figure',
+              { className: 'image is-64x64' },
+              _react2.default.createElement('img', { src: 'http://bulma.io/images/placeholders/128x128.png', alt: 'Image' })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'media-content' },
+            _react2.default.createElement(
+              'div',
+              { className: 'content' },
+              _react2.default.createElement(
+                'p',
+                null,
+                _react2.default.createElement(
+                  'strong',
+                  null,
+                  'Event name'
+                ),
+                ' ',
+                _react2.default.createElement(
+                  'small',
+                  null,
+                  'Event date'
+                ),
+                ' ',
+                _react2.default.createElement(
+                  'small',
+                  null,
+                  'Event venue'
+                ),
+                _react2.default.createElement('br', null),
+                'Event Info Here'
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+  return Movie;
+}(_react.Component);
+
+exports.default = Movie;
 
 /***/ }
 /******/ ]);

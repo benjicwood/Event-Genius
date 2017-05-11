@@ -5,6 +5,9 @@ import * as actions from '../actions/actions';
 import Event from './Event';
 
 class EventList extends Component {
+  componentWillMount () {
+    this.props.fetchEvent(this.props.event);
+  }
   render () {
     if (!this.props.event) {
       return (
@@ -13,7 +16,7 @@ class EventList extends Component {
     } else {
       return (
         <div style={{width: '800px', margin: '0 auto'}}>
-          {this.props.events.map(function (event, i) {
+          {this.props.event.map(function (event, i) {
             return <Event
               title={event.title}
               date={event.date}

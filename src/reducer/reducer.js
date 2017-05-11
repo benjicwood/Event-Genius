@@ -9,11 +9,11 @@ export default function reducer (state, action) {
   switch (action.type) {
     case types.FETCH_EVENT_REQUEST:
       return Object.assign({}, state, {
-        movie: action.event
+        event: action.event
       });
     case types.FETCH_EVENT_SUCCESS:
       return Object.assign({}, state, {
-        movie: action.event
+        event: action.event
       });
     case types.FETCH_EVENT_ERROR:
       return Object.assign({}, state, {

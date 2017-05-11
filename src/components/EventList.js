@@ -4,6 +4,8 @@ import * as actions from '../actions/actions';
 
 import Event from './Event';
 
+var amountShown = 10;
+
 class EventList extends Component {
   componentWillMount () {
     this.props.fetchEvent(this.props.event);
@@ -24,8 +26,7 @@ class EventList extends Component {
               venue={event.venue}
               id={event.id}
               key={i} />;
-          })
-// .sort(function (a, b) { return b.props.date - a.props.date; })
+          }).slice(0, 10)
         }
         </div>
       );

@@ -27304,6 +27304,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var amountShown = 10;
+
 var EventList = function (_Component) {
   (0, _inherits3.default)(EventList, _Component);
 
@@ -27338,9 +27340,7 @@ var EventList = function (_Component) {
               venue: event.venue,
               id: event.id,
               key: i });
-          })
-          // .sort(function (a, b) { return b.props.date - a.props.date; })
-
+          }).slice(0, 10)
         );
       }
     }

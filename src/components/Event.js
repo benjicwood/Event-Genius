@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import ModalView from './Modal';
+
 export default class Movie extends Component {
   render () {
     return (
@@ -12,11 +14,8 @@ export default class Movie extends Component {
           </div>
           <div className='media-content'>
             <div className='content'>
-              <p>
-                <strong>{this.props.title}</strong> <small>{this.props.date}</small> <small>{this.props.event}</small>
-                <br />
-                Event Info Here
-              </p>
+              <p><strong>{this.props.title}</strong> <small>{this.props.date}</small> <small>{this.props.event}</small></p>
+              <ModalView />
             </div>
           </div>
         </article>

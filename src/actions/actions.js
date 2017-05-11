@@ -32,3 +32,17 @@ export function fetchEventError (error) {
     error: error
   };
 }
+
+export function modalOpen (modalIsOpen) {
+  return {
+    type: types.MODAL_OPEN,
+    modalIsOpen: true
+  };
+}
+
+export function modalClose (modalIsOpen) {
+  return {
+    type: types.MODAL_CLOSE,
+    modalIsOpen: false
+  };
+}

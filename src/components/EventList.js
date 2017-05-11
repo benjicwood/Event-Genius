@@ -22,6 +22,7 @@ class EventList extends Component {
               date={event.date}
               image={event.image}
               venue={event.venue}
+              id={event.id}
               key={i} />;
           })
 // .sort(function (a, b) { return b.props.date - a.props.date; })

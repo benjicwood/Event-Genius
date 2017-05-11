@@ -27307,6 +27307,8 @@ var EventList = function (_Component) {
               venue: event.venue,
               key: i });
           })
+          // .sort(function (a, b) { return b.props.date - a.props.date; })
+
         );
       }
     }

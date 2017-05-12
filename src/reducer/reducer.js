@@ -2,7 +2,8 @@ import * as types from '../actions/types';
 
 export const initialState = {
   event: [],
-  modalIsOpen: false
+  modalIsOpen: false,
+  modalInfo: []
 };
 
 export default function reducer (state, action) {
@@ -17,6 +18,18 @@ export default function reducer (state, action) {
         event: action.event
       });
     case types.FETCH_EVENT_ERROR:
+      return Object.assign({}, state, {
+        error: action.error
+      });
+    case types.FETCH_EVENT_INFO_REQUEST:
+      return Object.assign({}, state, {
+        modalInfo: action.event
+      });
+    case types.FETCH_EVENT_INFO_SUCCESS:
+      return Object.assign({}, state, {
+        modalInfo: action.event
+      });
+    case types.FETCH_EVENT_INFO_ERROR:
       return Object.assign({}, state, {
         error: action.error
       });

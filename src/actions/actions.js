@@ -33,6 +33,37 @@ export function fetchEventError (error) {
   };
 }
 
+export function fetchEventInfo (event) {
+  return (dispatch) => {
+    request
+    .get(`${ROOT}${event.id}`)
+    .end((error, response) => {
+      if (error) dispatch(fetchEventInfoError(error));
+      else dispatch(fetchEventInfoSuccess(response.body));
+    });
+  };
+}
+
+export function fetchEventInfoRequest () {
+  return {
+    types: types.FETCH_EVENT_INFO_REQUEST
+  };
+}
+
+export function fetchEventInfoSuccess (event) {
+  return {
+    type: types.FETCH_EVENT_INFO_SUCCESS,
+    event: event
+  };
+}
+
+export function fetchEventInfoError (error) {
+  return {
+    type: types.FETCH_EVENT_INFO_ERROR,
+    error: error
+  };
+}
+
 export function modalOpen (modalIsOpen) {
   return {
     type: types.MODAL_OPEN,

@@ -4,8 +4,6 @@ import * as actions from '../actions/actions';
 
 import Event from './Event';
 
-var amountShown = 10;
-
 class EventList extends Component {
   componentWillMount () {
     this.props.fetchEvent(this.props.event);

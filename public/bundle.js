@@ -13360,15 +13360,13 @@ var ModalView = function (_Component) {
             { className: 'button is-info is-outlined is-fullwidth', onClick: this.closeModal },
             'Close'
           ),
-          _react2.default.createElement(
-            'p',
-            null,
-            this.props.modalEvent.title
-          ),
           _react2.default.createElement(_ModalEvent2.default, {
+            url: this.props.modalEvent.url,
+            date: this.props.modalEvent.date,
             informationtitle: this.props.modalEvent.information_title,
             image: this.props.modalEvent.image,
             informationdescription: this.props.modalEvent.information_description,
+            type: this.props.modalEvent.type,
             venue: this.props.modalEvent.venue
           })
         )
@@ -31790,6 +31788,10 @@ var _react = __webpack_require__(10);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _htmlviewer = __webpack_require__(353);
+
+var _htmlviewer2 = _interopRequireDefault(_htmlviewer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ModalEvent = function (_Component) {
@@ -31832,23 +31834,22 @@ var ModalEvent = function (_Component) {
                   null,
                   this.props.informationtitle
                 ),
-                ' ',
+                _react2.default.createElement('br', null),
                 _react2.default.createElement(
-                  'small',
-                  null,
-                  this.props.url
-                ),
-                ' ',
-                _react2.default.createElement(
-                  'small',
+                  'strong',
                   null,
                   this.props.venue
                 )
               ),
               _react2.default.createElement(
-                'p',
+                'a',
+                { href: this.props.url },
+                'Go To Event via Ticket Arena'
+              ),
+              _react2.default.createElement(
+                'div',
                 null,
-                this.props.informationdescription
+                (0, _htmlviewer2.default)(this.props.informationdescription)
               )
             )
           )
@@ -31860,6 +31861,28 @@ var ModalEvent = function (_Component) {
 }(_react.Component);
 
 exports.default = ModalEvent;
+
+/***/ },
+/* 353 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = htmlviewer;
+
+var _react = __webpack_require__(10);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function htmlviewer(htmlstring) {
+  return _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: htmlstring } });
+}
 
 /***/ }
 /******/ ]);

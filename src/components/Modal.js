@@ -28,11 +28,13 @@ class ModalView extends Component {
           onRequestClose={this.closeModal}
         >
           <button className='button is-info is-outlined is-fullwidth' onClick={this.closeModal}>Close</button>
-          <p>{this.props.modalEvent.title}</p>
           <ModalEvent
+            url={this.props.modalEvent.url}
+            date={this.props.modalEvent.date}
             informationtitle={this.props.modalEvent.information_title}
             image={this.props.modalEvent.image}
             informationdescription={this.props.modalEvent.information_description}
+            type={this.props.modalEvent.type}
             venue={this.props.modalEvent.venue}
             />
         </Modal>

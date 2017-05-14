@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import htmlviewer from '../helpers/htmlviewer';
+
 export default class ModalEvent extends Component {
   render () {
     return (
@@ -12,8 +14,10 @@ export default class ModalEvent extends Component {
           </div>
           <div className='media-content'>
             <div className='content'>
-              <p><strong>{this.props.informationtitle}</strong> <small>{this.props.url}</small> <small>{this.props.venue}</small></p>
-              <p>{this.props.informationdescription}</p>
+              <p><strong>{this.props.informationtitle}</strong><br />
+                <strong>{this.props.venue}</strong></p>
+              <a href={this.props.url}>Go To Event via Ticket Arena</a>
+              <div>{htmlviewer(this.props.informationdescription)}</div>
             </div>
           </div>
         </article>

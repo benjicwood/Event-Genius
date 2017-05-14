@@ -13305,11 +13305,13 @@ var _actions = __webpack_require__(94);
 
 var actions = _interopRequireWildcard(_actions);
 
+var _ModalEvent = __webpack_require__(352);
+
+var _ModalEvent2 = _interopRequireDefault(_ModalEvent);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-// import ModalEvent from './ModalEvent';
 
 var ModalView = function (_Component) {
   (0, _inherits3.default)(ModalView, _Component);
@@ -13361,8 +13363,14 @@ var ModalView = function (_Component) {
           _react2.default.createElement(
             'p',
             null,
-            this.props.url
-          )
+            this.props.modalEvent.title
+          ),
+          _react2.default.createElement(_ModalEvent2.default, {
+            informationtitle: this.props.modalEvent.information_title,
+            image: this.props.modalEvent.image,
+            informationdescription: this.props.modalEvent.information_description,
+            venue: this.props.modalEvent.venue
+          })
         )
       );
     }
@@ -13373,7 +13381,7 @@ var ModalView = function (_Component) {
 function mapStateToProps(state) {
   return {
     modalIsOpen: state.modalIsOpen,
-    modalEvent: state.id
+    modalEvent: state.modalEvent
   };
 }
 
@@ -31745,6 +31753,113 @@ function mapStateToProps(state) {
 }
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps)(Search);
+
+/***/ },
+/* 351 */,
+/* 352 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _getPrototypeOf = __webpack_require__(39);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(40);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(41);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(43);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(42);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(10);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ModalEvent = function (_Component) {
+  (0, _inherits3.default)(ModalEvent, _Component);
+
+  function ModalEvent() {
+    (0, _classCallCheck3.default)(this, ModalEvent);
+    return (0, _possibleConstructorReturn3.default)(this, (ModalEvent.__proto__ || (0, _getPrototypeOf2.default)(ModalEvent)).apply(this, arguments));
+  }
+
+  (0, _createClass3.default)(ModalEvent, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'box' },
+        _react2.default.createElement(
+          'article',
+          { className: 'media' },
+          _react2.default.createElement(
+            'div',
+            { className: 'media-left' },
+            _react2.default.createElement(
+              'figure',
+              { className: 'image is-64x64' },
+              _react2.default.createElement('img', { src: this.props.image, alt: 'Image' })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'media-content' },
+            _react2.default.createElement(
+              'div',
+              { className: 'content' },
+              _react2.default.createElement(
+                'p',
+                null,
+                _react2.default.createElement(
+                  'strong',
+                  null,
+                  this.props.informationtitle
+                ),
+                ' ',
+                _react2.default.createElement(
+                  'small',
+                  null,
+                  this.props.url
+                ),
+                ' ',
+                _react2.default.createElement(
+                  'small',
+                  null,
+                  this.props.venue
+                )
+              ),
+              _react2.default.createElement(
+                'p',
+                null,
+                this.props.informationdescription
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+  return ModalEvent;
+}(_react.Component);
+
+exports.default = ModalEvent;
 
 /***/ }
 /******/ ]);

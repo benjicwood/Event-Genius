@@ -2,7 +2,7 @@ import * as types from './types';
 import request from 'superagent';
 import { ROOT } from '../../config';
 
-export function fetchEvent (eventname) {
+export function fetchEvent () {
   return (dispatch) => {
     request
     .get(`${ROOT}`)
@@ -51,5 +51,36 @@ export function setSearchTerm (search) {
   return {
     type: types.SET_SEARCH_TERM,
     search: search
+  };
+}
+
+export function fetchEventInfo (id) {
+  return (dispatch) => {
+    request
+    .get(`${ROOT}/${id}`)
+    .end((error, response) => {
+      if (error) dispatch(fetchEventInfoError(error));
+      else dispatch(fetchEventInfoSuccess(response.body));
+    });
+  };
+}
+
+export function fetchEventInfoRequest () {
+  return {
+    types: types.FETCH_EVENT_INFO_REQUEST
+  };
+}
+
+export function fetchEventInfoSuccess (modalEvent) {
+  return {
+    type: types.FETCH_EVENT_INFO_SUCCESS,
+    modalEvent: modalEvent
+  };
+}
+
+export function fetchEventInfoError (error) {
+  return {
+    type: types.FETCH_EVENT_INFO_ERROR,
+    error: error
   };
 }

@@ -7457,6 +7457,10 @@ exports.fetchEventError = fetchEventError;
 exports.modalOpen = modalOpen;
 exports.modalClose = modalClose;
 exports.setSearchTerm = setSearchTerm;
+exports.fetchEventInfo = fetchEventInfo;
+exports.fetchEventInfoRequest = fetchEventInfoRequest;
+exports.fetchEventInfoSuccess = fetchEventInfoSuccess;
+exports.fetchEventInfoError = fetchEventInfoError;
 
 var _types = __webpack_require__(95);
 
@@ -7472,7 +7476,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-function fetchEvent(eventname) {
+function fetchEvent() {
   return function (dispatch) {
     _superagent2.default.get('' + _config.ROOT).end(function (error, response) {
       if (error) dispatch(fetchEventError(error));else dispatch(fetchEventSuccess(response.body));
@@ -7521,6 +7525,34 @@ function setSearchTerm(search) {
   };
 }
 
+function fetchEventInfo(id) {
+  return function (dispatch) {
+    _superagent2.default.get(_config.ROOT + '/' + id).end(function (error, response) {
+      if (error) dispatch(fetchEventInfoError(error));else dispatch(fetchEventInfoSuccess(response.body));
+    });
+  };
+}
+
+function fetchEventInfoRequest() {
+  return {
+    types: types.FETCH_EVENT_INFO_REQUEST
+  };
+}
+
+function fetchEventInfoSuccess(modalEvent) {
+  return {
+    type: types.FETCH_EVENT_INFO_SUCCESS,
+    modalEvent: modalEvent
+  };
+}
+
+function fetchEventInfoError(error) {
+  return {
+    type: types.FETCH_EVENT_INFO_ERROR,
+    error: error
+  };
+}
+
 /***/ },
 /* 95 */
 /***/ function(module, exports) {
@@ -7539,6 +7571,10 @@ var MODAL_OPEN = exports.MODAL_OPEN = 'MODAL_OPEN';
 var MODAL_CLOSE = exports.MODAL_CLOSE = 'MODAL_CLOSE';
 
 var SET_SEARCH_TERM = exports.SET_SEARCH_TERM = 'SET_SEARCH_TERM';
+
+var FETCH_EVENT_INFO_REQUEST = exports.FETCH_EVENT_INFO_REQUEST = 'FETCH_EVENT_INFO_REQUEST';
+var FETCH_EVENT_INFO_SUCCESS = exports.FETCH_EVENT_INFO_SUCCESS = 'FETCH_EVENT_INFO_SUCCESS';
+var FETCH_EVENT_INFO_ERROR = exports.FETCH_EVENT_INFO_ERROR = 'FETCH_EVENT_INFO_ERROR';
 
 /***/ },
 /* 96 */
@@ -12751,6 +12787,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var initialState = exports.initialState = {
   event: [],
   modalIsOpen: false,
+  modalEvent: [],
   search: ''
 };
 
@@ -12771,11 +12808,11 @@ function reducer(state, action) {
       });
     case types.FETCH_EVENT_INFO_REQUEST:
       return (0, _assign2.default)({}, state, {
-        modalInfo: action.event
+        modalEvent: action.event
       });
     case types.FETCH_EVENT_INFO_SUCCESS:
       return (0, _assign2.default)({}, state, {
-        modalInfo: action.event
+        modalEvent: action.event
       });
     case types.FETCH_EVENT_INFO_ERROR:
       return (0, _assign2.default)({}, state, {
@@ -13007,7 +13044,7 @@ exports['default'] = thunk;
 'use strict';
 
 module.exports = {
-  ROOT: 'http://tech-test.egtools.co.uk/events/'
+  ROOT: 'http://tech-test.egtools.co.uk/events'
 };
 
 /***/ },
@@ -13104,7 +13141,7 @@ var Movie = function (_Component) {
                   this.props.event
                 )
               ),
-              _react2.default.createElement(_Modal2.default, null)
+              _react2.default.createElement(_Modal2.default, { id: this.props.id, title: this.props.title })
             )
           )
         )
@@ -13266,6 +13303,10 @@ var _reactRedux = __webpack_require__(55);
 
 var _actions = __webpack_require__(94);
 
+var actions = _interopRequireWildcard(_actions);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var ModalView = function (_Component) {
@@ -13284,12 +13325,13 @@ var ModalView = function (_Component) {
   (0, _createClass3.default)(ModalView, [{
     key: 'openModal',
     value: function openModal(event) {
-      this.props.dispatch((0, _actions.modalOpen)(event.target.value));
+      this.props.dispatch(actions.modalOpen(event.target.value));
+      this.props.dispatch(actions.fetchEventInfo(this.props.id));
     }
   }, {
     key: 'closeModal',
     value: function closeModal(event) {
-      this.props.dispatch((0, _actions.modalClose)(event.target.value));
+      this.props.dispatch(actions.modalClose(event.target.value));
     }
   }, {
     key: 'render',
@@ -13317,12 +13359,12 @@ var ModalView = function (_Component) {
           _react2.default.createElement(
             'p',
             null,
-            this.props.date
+            this.props.id
           ),
           _react2.default.createElement(
             'p',
             null,
-            this.props.title
+            'hi'
           )
         )
       );

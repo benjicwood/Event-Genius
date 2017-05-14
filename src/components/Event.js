@@ -15,7 +15,7 @@ export default class Movie extends Component {
           <div className='media-content'>
             <div className='content'>
               <p><strong>{this.props.title}</strong> <small>{this.props.date}</small> <small>{this.props.event}</small></p>
-              <ModalView />
+              <ModalView id={this.props.id} title={this.props.title} />
             </div>
           </div>
         </article>

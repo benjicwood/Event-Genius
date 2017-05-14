@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 import { connect } from 'react-redux';
-import { modalOpen, modalClose, fetchEventInfo } from '../actions/actions';
+import * as actions from '../actions/actions';
 
 class ModalView extends Component {
   constructor () {
@@ -10,10 +10,11 @@ class ModalView extends Component {
     this.closeModal = this.closeModal.bind(this);
   }
   openModal (event) {
-    this.props.dispatch(modalOpen(event.target.value));
+    this.props.dispatch(actions.modalOpen(event.target.value));
+    this.props.dispatch(actions.fetchEventInfo(this.props.id));
   }
   closeModal (event) {
-    this.props.dispatch(modalClose(event.target.value));
+    this.props.dispatch(actions.modalClose(event.target.value));
   }
   render () {
     return (
@@ -25,8 +26,8 @@ class ModalView extends Component {
           onRequestClose={this.closeModal}
         >
           <button className='button is-info is-outlined is-fullwidth' onClick={this.closeModal}>Close</button>
-          <p>{this.props.date}</p>
-          <p>{this.props.title}</p>
+          <p>{this.props.id}</p>
+          <p>hi</p>
         </Modal>
       </div>
     );

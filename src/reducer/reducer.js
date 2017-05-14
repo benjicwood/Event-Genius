@@ -3,6 +3,7 @@ import * as types from '../actions/types';
 export const initialState = {
   event: [],
   modalIsOpen: false,
+  modalEvent: [],
   search: ''
 };
 
@@ -23,11 +24,11 @@ export default function reducer (state, action) {
       });
     case types.FETCH_EVENT_INFO_REQUEST:
       return Object.assign({}, state, {
-        modalInfo: action.event
+        modalEvent: action.event
       });
     case types.FETCH_EVENT_INFO_SUCCESS:
       return Object.assign({}, state, {
-        modalInfo: action.event
+        modalEvent: action.event
       });
     case types.FETCH_EVENT_INFO_ERROR:
       return Object.assign({}, state, {

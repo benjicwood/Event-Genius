@@ -76,4 +76,46 @@ describe('Actions', () => {
       expect(actions.fetchEventInfoError.length).to.equal(1);
     });
   });
+  describe('actions.setSearchTerm', () => {
+    it('has a SET_SEARCH_TERM type', () => {
+      expect(types.SET_SEARCH_TERM).to.equal('SET_SEARCH_TERM');
+    });
+    it('is a function', () => {
+      expect(actions.setSearchTerm).to.be.a('function');
+    });
+    it('returns an object', () => {
+      expect(actions.setSearchTerm()).to.be.an('object');
+    });
+    it('should take 1 argument', function () {
+      expect(actions.setSearchTerm.length).to.equal(1);
+    });
+  });
+  describe('actions.modalOpen', () => {
+    it('has a MODAL_OPEN type', () => {
+      expect(types.MODAL_OPEN).to.equal('MODAL_OPEN');
+    });
+    it('is a function', () => {
+      expect(actions.modalOpen).to.be.a('function');
+    });
+    it('returns an object', () => {
+      expect(actions.modalOpen()).to.be.an('object');
+    });
+    it('should take 1 argument', function () {
+      expect(actions.modalOpen.length).to.equal(1);
+    });
+  });
+  describe('actions.modalClose', () => {
+    it('has a MODAL_CLOSE type', () => {
+      expect(types.MODAL_CLOSE).to.equal('MODAL_CLOSE');
+    });
+    it('is a function', () => {
+      expect(actions.modalClose).to.be.a('function');
+    });
+    it('returns an object', () => {
+      expect(actions.modalClose()).to.be.an('object');
+    });
+    it('should take 1 argument', function () {
+      expect(actions.modalClose.length).to.equal(1);
+    });
+  });
 });

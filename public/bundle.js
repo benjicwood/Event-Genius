@@ -12808,11 +12808,11 @@ function reducer(state, action) {
       });
     case types.FETCH_EVENT_INFO_REQUEST:
       return (0, _assign2.default)({}, state, {
-        modalEvent: action.event
+        modalEvent: action.modalEvent
       });
     case types.FETCH_EVENT_INFO_SUCCESS:
       return (0, _assign2.default)({}, state, {
-        modalEvent: action.event
+        modalEvent: action.modalEvent
       });
     case types.FETCH_EVENT_INFO_ERROR:
       return (0, _assign2.default)({}, state, {
@@ -13088,15 +13088,15 @@ var _Modal2 = _interopRequireDefault(_Modal);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Movie = function (_Component) {
-  (0, _inherits3.default)(Movie, _Component);
+var Event = function (_Component) {
+  (0, _inherits3.default)(Event, _Component);
 
-  function Movie() {
-    (0, _classCallCheck3.default)(this, Movie);
-    return (0, _possibleConstructorReturn3.default)(this, (Movie.__proto__ || (0, _getPrototypeOf2.default)(Movie)).apply(this, arguments));
+  function Event() {
+    (0, _classCallCheck3.default)(this, Event);
+    return (0, _possibleConstructorReturn3.default)(this, (Event.__proto__ || (0, _getPrototypeOf2.default)(Event)).apply(this, arguments));
   }
 
-  (0, _createClass3.default)(Movie, [{
+  (0, _createClass3.default)(Event, [{
     key: 'render',
     value: function render() {
       return _react2.default.createElement(
@@ -13148,10 +13148,10 @@ var Movie = function (_Component) {
       );
     }
   }]);
-  return Movie;
+  return Event;
 }(_react.Component);
 
-exports.default = Movie;
+exports.default = Event;
 
 /***/ },
 /* 158 */
@@ -13309,6 +13309,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// import ModalEvent from './ModalEvent';
+
 var ModalView = function (_Component) {
   (0, _inherits3.default)(ModalView, _Component);
 
@@ -13359,12 +13361,7 @@ var ModalView = function (_Component) {
           _react2.default.createElement(
             'p',
             null,
-            this.props.id
-          ),
-          _react2.default.createElement(
-            'p',
-            null,
-            'hi'
+            this.props.url
           )
         )
       );
@@ -13375,7 +13372,8 @@ var ModalView = function (_Component) {
 
 function mapStateToProps(state) {
   return {
-    modalIsOpen: state.modalIsOpen
+    modalIsOpen: state.modalIsOpen,
+    modalEvent: state.id
   };
 }
 

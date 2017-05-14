@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
-import ModalView from './Modal';
-
-export default class Event extends Component {
+export default class ModalEvent extends Component {
   render () {
     return (
       <div className='box'>
@@ -14,8 +12,8 @@ export default class Event extends Component {
           </div>
           <div className='media-content'>
             <div className='content'>
-              <p><strong>{this.props.title}</strong> <small>{this.props.date}</small> <small>{this.props.event}</small></p>
-              <ModalView id={this.props.id} title={this.props.title} />
+              <p><strong>{this.props.informationtitle}</strong> <small>{this.props.url}</small> <small>{this.props.venue}</small></p>
+              <p>{this.props.informationdescription}</p>
             </div>
           </div>
         </article>

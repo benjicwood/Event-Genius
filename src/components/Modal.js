@@ -3,6 +3,8 @@ import Modal from 'react-modal';
 import { connect } from 'react-redux';
 import * as actions from '../actions/actions';
 
+// import ModalEvent from './ModalEvent';
+
 class ModalView extends Component {
   constructor () {
     super();
@@ -26,8 +28,8 @@ class ModalView extends Component {
           onRequestClose={this.closeModal}
         >
           <button className='button is-info is-outlined is-fullwidth' onClick={this.closeModal}>Close</button>
-          <p>{this.props.id}</p>
-          <p>hi</p>
+          <p>{this.props.url}</p>
+
         </Modal>
       </div>
     );
@@ -36,7 +38,8 @@ class ModalView extends Component {
 
 function mapStateToProps (state) {
   return {
-    modalIsOpen: state.modalIsOpen
+    modalIsOpen: state.modalIsOpen,
+    modalEvent: state.id
   };
 }
 

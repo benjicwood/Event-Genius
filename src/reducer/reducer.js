@@ -24,11 +24,11 @@ export default function reducer (state, action) {
       });
     case types.FETCH_EVENT_INFO_REQUEST:
       return Object.assign({}, state, {
-        modalEvent: action.event
+        modalEvent: action.modalEvent
       });
     case types.FETCH_EVENT_INFO_SUCCESS:
       return Object.assign({}, state, {
-        modalEvent: action.event
+        modalEvent: action.modalEvent
       });
     case types.FETCH_EVENT_INFO_ERROR:
       return Object.assign({}, state, {

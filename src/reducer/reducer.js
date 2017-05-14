@@ -3,7 +3,7 @@ import * as types from '../actions/types';
 export const initialState = {
   event: [],
   modalIsOpen: false,
-  modalInfo: []
+  search: ''
 };
 
 export default function reducer (state, action) {
@@ -40,6 +40,10 @@ export default function reducer (state, action) {
     case types.MODAL_CLOSE:
       return Object.assign({}, state, {
         modalIsOpen: action.modalIsOpen
+      });
+    case types.SET_SEARCH_TERM:
+      return Object.assign({}, state, {
+        search: action.search
       });
     default:
       return state;

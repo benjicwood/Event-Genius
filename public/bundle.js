@@ -7454,12 +7454,9 @@ exports.fetchEvent = fetchEvent;
 exports.fetchEventRequest = fetchEventRequest;
 exports.fetchEventSuccess = fetchEventSuccess;
 exports.fetchEventError = fetchEventError;
-exports.fetchEventInfo = fetchEventInfo;
-exports.fetchEventInfoRequest = fetchEventInfoRequest;
-exports.fetchEventInfoSuccess = fetchEventInfoSuccess;
-exports.fetchEventInfoError = fetchEventInfoError;
 exports.modalOpen = modalOpen;
 exports.modalClose = modalClose;
+exports.setSearchTerm = setSearchTerm;
 
 var _types = __webpack_require__(95);
 
@@ -7503,34 +7500,6 @@ function fetchEventError(error) {
   };
 }
 
-function fetchEventInfo(event) {
-  return function (dispatch) {
-    _superagent2.default.get('' + _config.ROOT + event.id).end(function (error, response) {
-      if (error) dispatch(fetchEventInfoError(error));else dispatch(fetchEventInfoSuccess(response.body));
-    });
-  };
-}
-
-function fetchEventInfoRequest() {
-  return {
-    types: types.FETCH_EVENT_INFO_REQUEST
-  };
-}
-
-function fetchEventInfoSuccess(event) {
-  return {
-    type: types.FETCH_EVENT_INFO_SUCCESS,
-    event: event
-  };
-}
-
-function fetchEventInfoError(error) {
-  return {
-    type: types.FETCH_EVENT_INFO_ERROR,
-    error: error
-  };
-}
-
 function modalOpen(modalIsOpen) {
   return {
     type: types.MODAL_OPEN,
@@ -7542,6 +7511,13 @@ function modalClose(modalIsOpen) {
   return {
     type: types.MODAL_CLOSE,
     modalIsOpen: false
+  };
+}
+
+function setSearchTerm(search) {
+  return {
+    type: types.SET_SEARCH_TERM,
+    search: search
   };
 }
 
@@ -7559,12 +7535,10 @@ var FETCH_EVENT_REQUEST = exports.FETCH_EVENT_REQUEST = 'FETCH_EVENT_REQUEST';
 var FETCH_EVENT_SUCCESS = exports.FETCH_EVENT_SUCCESS = 'FETCH_EVENT_SUCCESS';
 var FETCH_EVENT_ERROR = exports.FETCH_EVENT_ERROR = 'FETCH_EVENT_ERROR';
 
-var FETCH_EVENT_INFO_REQUEST = exports.FETCH_EVENT_INFO_REQUEST = 'FETCH_EVENT_INFO_REQUEST';
-var FETCH_EVENT_INFO_SUCCESS = exports.FETCH_EVENT_INFO_SUCCESS = 'FETCH_EVENT_INFO_SUCCESS';
-var FETCH_EVENT_INFO_ERROR = exports.FETCH_EVENT_INFO_ERROR = 'FETCH_EVENT_INFO_ERROR';
-
 var MODAL_OPEN = exports.MODAL_OPEN = 'MODAL_OPEN';
 var MODAL_CLOSE = exports.MODAL_CLOSE = 'MODAL_CLOSE';
+
+var SET_SEARCH_TERM = exports.SET_SEARCH_TERM = 'SET_SEARCH_TERM';
 
 /***/ },
 /* 96 */
@@ -12713,6 +12687,10 @@ var _EventList = __webpack_require__(158);
 
 var _EventList2 = _interopRequireDefault(_EventList);
 
+var _Search = __webpack_require__(350);
+
+var _Search2 = _interopRequireDefault(_Search);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function (_Component) {
@@ -12734,6 +12712,7 @@ var App = function (_Component) {
           null,
           'benjicwood / Event Genius'
         ),
+        _react2.default.createElement(_Search2.default, null),
         _react2.default.createElement(_EventList2.default, null)
       );
     }
@@ -12772,7 +12751,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var initialState = exports.initialState = {
   event: [],
   modalIsOpen: false,
-  modalInfo: []
+  search: ''
 };
 
 function reducer(state, action) {
@@ -12809,6 +12788,10 @@ function reducer(state, action) {
     case types.MODAL_CLOSE:
       return (0, _assign2.default)({}, state, {
         modalIsOpen: action.modalIsOpen
+      });
+    case types.SET_SEARCH_TERM:
+      return (0, _assign2.default)({}, state, {
+        search: action.search
       });
     default:
       return state;
@@ -13330,6 +13313,16 @@ var ModalView = function (_Component) {
             'button',
             { className: 'button is-info is-outlined is-fullwidth', onClick: this.closeModal },
             'Close'
+          ),
+          _react2.default.createElement(
+            'p',
+            null,
+            this.props.date
+          ),
+          _react2.default.createElement(
+            'p',
+            null,
+            this.props.title
           )
         )
       );
@@ -31619,6 +31612,99 @@ _reactDom2.default.render(_react2.default.createElement(
   { store: store },
   _react2.default.createElement(_App2.default, null)
 ), document.getElementById('root'));
+
+/***/ },
+/* 350 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _getPrototypeOf = __webpack_require__(39);
+
+var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+var _classCallCheck2 = __webpack_require__(40);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(41);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(43);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(42);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(10);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(55);
+
+var _actions = __webpack_require__(94);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Search = function (_Component) {
+  (0, _inherits3.default)(Search, _Component);
+
+  function Search(props) {
+    (0, _classCallCheck3.default)(this, Search);
+
+    var _this = (0, _possibleConstructorReturn3.default)(this, (Search.__proto__ || (0, _getPrototypeOf2.default)(Search)).call(this, props));
+
+    _this.handleInputChange = _this.handleInputChange.bind(_this);
+    return _this;
+  }
+
+  (0, _createClass3.default)(Search, [{
+    key: 'handleInputChange',
+    value: function handleInputChange(event) {
+      this.props.dispatch((0, _actions.setSearchTerm)(event.target.value));
+      this.props.dispatch((0, _actions.fetchEvent)(event.target.value));
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { style: { width: '600px', margin: '0 auto' } },
+        _react2.default.createElement(
+          'div',
+          { className: 'field' },
+          _react2.default.createElement(
+            'label',
+            { className: 'label' },
+            'Search'
+          ),
+          _react2.default.createElement(
+            'p',
+            { className: 'control' },
+            _react2.default.createElement('input', { className: 'input', type: 'text', placeholder: 'title...', onChange: this.handleInputChange })
+          )
+        )
+      );
+    }
+  }]);
+  return Search;
+}(_react.Component);
+
+function mapStateToProps(state) {
+  return {
+    search: state.search
+  };
+}
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps)(Search);
 
 /***/ }
 /******/ ]);

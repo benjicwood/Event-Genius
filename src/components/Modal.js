@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 import { connect } from 'react-redux';
-import { modalOpen, modalClose } from '../actions/actions';
+import { modalOpen, modalClose, fetchEventInfo } from '../actions/actions';
 
 class ModalView extends Component {
   constructor () {
@@ -25,6 +25,8 @@ class ModalView extends Component {
           onRequestClose={this.closeModal}
         >
           <button className='button is-info is-outlined is-fullwidth' onClick={this.closeModal}>Close</button>
+          <p>{this.props.date}</p>
+          <p>{this.props.title}</p>
         </Modal>
       </div>
     );

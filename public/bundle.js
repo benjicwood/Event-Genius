@@ -31833,18 +31833,32 @@ var ModalEvent = function (_Component) {
                   'strong',
                   null,
                   this.props.informationtitle
-                ),
-                _react2.default.createElement('br', null),
+                )
+              ),
+              _react2.default.createElement(
+                'p',
+                null,
                 _react2.default.createElement(
                   'strong',
                   null,
+                  'Venue: ',
                   this.props.venue
+                )
+              ),
+              _react2.default.createElement(
+                'p',
+                null,
+                _react2.default.createElement(
+                  'strong',
+                  null,
+                  'Event Type: ',
+                  this.props.type
                 )
               ),
               _react2.default.createElement(
                 'a',
                 { href: this.props.url },
-                'Go To Event via Ticket Arena'
+                'See Event on Ticket Arena'
               ),
               _react2.default.createElement(
                 'div',

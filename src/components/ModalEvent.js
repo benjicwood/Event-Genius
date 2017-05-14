@@ -14,9 +14,10 @@ export default class ModalEvent extends Component {
           </div>
           <div className='media-content'>
             <div className='content'>
-              <p><strong>{this.props.informationtitle}</strong><br />
-                <strong>{this.props.venue}</strong></p>
-              <a href={this.props.url}>Go To Event via Ticket Arena</a>
+              <p><strong>{this.props.informationtitle}</strong></p>
+              <p><strong>Venue: {this.props.venue}</strong></p>
+              <p><strong>Event Type: {this.props.type}</strong></p>
+              <a href={this.props.url}>See Event on Ticket Arena</a>
               <div>{htmlviewer(this.props.informationdescription)}</div>
             </div>
           </div>

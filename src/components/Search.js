@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setSearchTerm, fetchEvent } from '../actions/actions';
+import { setSearchTerm } from '../actions/actions';
 
 class Search extends Component {
   constructor (props) {
@@ -9,11 +9,10 @@ class Search extends Component {
   }
   handleInputChange (event) {
     this.props.dispatch(setSearchTerm(event.target.value));
-    this.props.dispatch(fetchEvent(event.target.value));
   }
   render () {
     return (
-      <div style={{width: '600px', margin: '0 auto'}}>
+      <div style={{width: '600px', margin: '0 auto', paddingBottom: '30px'}}>
         <div className='field'>
           <label className='label'>Search</label>
           <p className='control'>

@@ -24,7 +24,7 @@ class EventList extends Component {
               venue={event.venue}
               id={event.id}
               key={i} />;
-          }).slice(0, 10)
+          }).slice(0, 20)
         }
         </div>
       );
